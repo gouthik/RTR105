@@ -1,0 +1,19 @@
+// let investigate data  types and variables
+#include<stdio.h>
+int main(void)
+{
+char c,test symbol; 
+printf("value of c variable as symbol:%c\n",c);
+printf("value of c variable as integer number (dec):%d\n",c);
+printf("value of c variable as integer number (oct):%0\n",c);
+printf("value of c variable as integer number (hex):%x\n",c);
+printf("\n");
+printf("value of c_new variable as symbol:%c\n",c_new);
+printf("value of c_new variable as integer number (dec):%d\n",c_new);
+printf("value of c_new variable as integer number (oct):%0\n",c_new);
+printf("value of c_new variable as integer number (hex):%x\n",c_new);
+c='y'
+return 0;
+}
+
+
