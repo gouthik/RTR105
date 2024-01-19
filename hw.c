@@ -1,41 +1,66 @@
 #include <stdio.h>
+#include <math.h>
+
+#define EPSILON 1e-6  // Define a small value for precision
+
+double func(double x) {
+    return x*x - 4;  // Example equation: f(x) = x^2 - 4
+}
+
+// Bisection method to find the root of the equation f(x) = c
+double bisection(double a, double b, double c, double precision, int *iterations) {
+    double x;
+
+    if (func(a) * func(b) >= 0) {
+        printf("Invalid numbers of 'a' and 'b'. They should have different signs.\n");
+        return 0;
+    }
+
+    do {
+        x = (a + b) / 2.0;
+        
+        // Check if the root is found
+        if (fabs(func(x) - c) < precision) {
+            break;
+        }
+
+        // Update the range [a, b] based on the signs of f(a) and f(x)
+        if (func(x) * func(a) < 0) {
+            b = x;
+        } else {
+            a = x;
+        }
+
+        (*iterations)++;
+
+    } while (fabs(b - a) > precision);
+
+    return x;
+}
 
 int main() {
-    int num1, num2, num3;
-    printf("Enter the first number: ");
-    scanf("%d", &num1);
+    double a, b, c, precision, result;
+    int iterations = 0;
 
-    printf("Enter the second number: ");
-    scanf("%d", &num2);
+    // Obtain user input
+    printf("Enter the value of 'a': ");
+    scanf("%lf", &a);
 
-    printf("Enter the third number: ");
-    scanf("%d", &num3);
-    printf("Enter sorting order (1 ascending, 2 descending): ");
-    int s;
-    scanf("%d", &s);
-    if (s == 1) {
-        if (num1 > num2) {
-            int temp = num1;
-            num1 = num2;
-            num2 = temp;
-        }
-        if (num2 > num3) {
-            int temp = num2;
-            num2 = num3;
-            num3 = temp;
-        }
-        if (num1 > num2) {
-            int temp = num1;
-            num1 = num2;
-            num2 = temp;
-        }
-    } else if (s == 2) {
-        
-        printf("Sorted sequence: %d, %d, %d\n",num1, num2, num3);
-    }
-else
-{
-    printf("Sorted sequence: %d, %d, %d\n", num3, num2, num1);
-}
-    return 0; 
+    printf("Enter the value of 'b': ");
+    scanf("%lf", &b);
+
+    printf("Enter the value of 'c': ");
+    scanf("%lf", &c);
+
+    printf("Enter value for precision: ");
+    scanf("%lf", &precision);
+
+    result = bisection(a, b, c, precision, &iterations);
+
+    // Display the results
+    printf("\nRoot of the equation f(x) = c is: %lf\n", result);
+    printf("f(%lf) = %lf\n", result, func(result));
+    printf("Number of iterations: %d\n", iterations);
+
+    return 0;
 }
