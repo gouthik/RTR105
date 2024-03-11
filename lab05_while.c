@@ -49,7 +49,7 @@ void calculateCharFactorial(char num) {
     }
 
     if (charNum == reference * num) {
-        printf("Factorial Of Number %d! = %hhd\n", num, charNum);
+        printf("Factorial Of Number %d! = %d\n", num, charNum);
     }
 }
 
@@ -81,12 +81,6 @@ void calculateLongFactorial(long long num) {
 
     while (counter <= num) {
         longNum *= counter;
-
-        if (longNum < 0) {
-            printf("Selected data type is too small to store factorial of number %lld\n", num);
-            break;
-        }
-
         counter++;
     }
 
