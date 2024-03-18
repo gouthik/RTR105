@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <limits.h>
+
+void calculateCharFactorial(char);
+void calculateIntFactorial(int);
+void calculateLongFactorial(long long);
+
+int main() {
+    long long inputNum;
+    char choice;
+
+    printf("Please Enter Decimal Number: ");
+    scanf("%lld", &inputNum);
+
+    printf("Please Enter first letter of Data type Char(c) Int(i) Long(l):\n");
+    scanf(" %c", &choice);
+
+    switch (choice) {
+        case 'c':
+            calculateCharFactorial(inputNum);
+            break;
+        case 'i':
+            calculateIntFactorial(inputNum);
+            break;
+        case 'l':
+            calculateLongFactorial(inputNum);
+            break;
+        default:
+            printf("Invalid choice\n");
+    }
+
+    return 0;
+}
+
+void calculateCharFactorial(char num) {
+    char charNum = 1;
+
+    for (int counter = 1; counter < num; counter++) {
+        if (charNum > CHAR_MAX / (counter + 1)) {
+            printf("Selected Data type is too small to store number %d\n", num);
+            return; // Stop further calculations
+        }
+        charNum *= (counter + 1);
+    }
+
+    printf("Factorial Of Number %d! = %hhd\n", num, charNum);
+}
+
+void calculateIntFactorial(int num) {
+    int intNum = 1;
+
+    for (int counter = 1; counter < num; counter++) {
+        if (intNum > INT_MAX / (counter + 1)) {
+            printf("Selected data type is too small to store factorial of number %d\n", num);
+            return; // Stop further calculations
+        }
+        intNum *= (counter + 1);
+    }
+
+    printf("Factorial Of Number %d! = %d\n", num, intNum);
+}
+
+void calculateLongFactorial(long long num) {
+    long long longNum = 1;
+
+    for (long long counter = 1; counter <= num; counter++) {
+        if (counter > num) {
+            printf("Factorial Of Number %lld! = %lld\n", num, longNum);
+            return;
+        }
+        if (longNum > LLONG_MAX / counter) {
+            printf("Selected data type is too small to store factorial of number %lld\n", num);
+            return; // Stop further calculations
+        }
+        longNum *= counter;
+    }
+}
