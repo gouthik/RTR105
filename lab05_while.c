@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-void calculateCharFactorial(char);
-void calculateIntFactorial(int);
-void calculateLongFactorial(long long);
+void calculateCharFactorial(char num);
+void calculateIntFactorial(int num);
+void calculateLongFactorial(long long num);
 
 int main() {
     long long inputNum;
@@ -10,16 +10,15 @@ int main() {
 
     printf("Please Enter Decimal Number: ");
     scanf("%lld", &inputNum);
-
-    printf("Please Enter first letter of Data type Char(c) Int(i) Long(l):\n");
+    printf("Please Enter first letter of Data type Char(c) Int(i) Long(l)\n: ");
     scanf(" %c", &choice);
 
     switch (choice) {
         case 'c':
-            calculateCharFactorial((char)inputNum);
+            calculateCharFactorial((char)inputNum); // Cast inputNum to char
             break;
         case 'i':
-            calculateIntFactorial((int)inputNum);
+            calculateIntFactorial((int)inputNum); // Cast inputNum to int
             break;
         case 'l':
             calculateLongFactorial(inputNum);
@@ -41,17 +40,19 @@ void calculateCharFactorial(char num) {
         reference *= counter;
 
         if (charNum / (counter + 1) != reference) {
-            printf("Selected Data type is too small to store number %d\n", num);
-            return;
+            printf("Selected Data type is too small to store number %d\n", num); // Changed %lld to %d
+            break;
         }
 
         counter++;
     }
 
-    printf("Factorial Of Number %d! = %hhd\n", num, charNum);
+    if (charNum == reference * num) {
+        printf("Factorial Of Number %d! = %d\n", num, charNum); // Changed %lld to %d
+    }
 }
 
-void calculateIntFactorial(int num) {
+void calculateIntFactorial(int num) { // Changed parameter type to int
     int intNum = 1;
     int reference = 1;
     int counter = 1;
@@ -61,14 +62,16 @@ void calculateIntFactorial(int num) {
         reference *= counter;
 
         if (intNum / (counter + 1) != reference) {
-            printf("Selected data type is too small to store factorial of number %d\n", num);
-            return;
+            printf("Selected data type is too small to store factorial of number %d\n", num); // Changed %lld to %d
+            break;
         }
 
         counter++;
     }
 
-    printf("Factorial Of Number %d! = %d\n", num, intNum);
+    if (intNum == reference * num) {
+        printf("Factorial Of Number %d! = %d\n", num, intNum); // Changed %lld to %d
+    }
 }
 
 void calculateLongFactorial(long long num) {
@@ -78,8 +81,7 @@ void calculateLongFactorial(long long num) {
     while (counter <= num) {
         longNum *= counter;
 
-        if (longNum < 0)
-        {
+        if (longNum < counter) {
             printf("Selected data type is too small to store factorial of number %lld\n", num);
             return;
         }
@@ -87,5 +89,5 @@ void calculateLongFactorial(long long num) {
         counter++;
     }
 
-    printf("Factorial Of Number %lld! = %lld\n", num, longNum);
+    printf("Factorial of Number %lld! = %lld\n", num, longNum);
 }
