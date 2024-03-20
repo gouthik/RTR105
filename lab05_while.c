@@ -78,7 +78,8 @@ void calculateLongFactorial(long long num) {
     while (counter <= num) {
         longNum *= counter;
 
-        if (longNum < 0) {
+        if (longNum < 0)
+        {
             printf("Selected data type is too small to store factorial of number %lld\n", num);
             return;
         }
